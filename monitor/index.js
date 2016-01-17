@@ -1,11 +1,13 @@
 var fs 	= require('fs'),
-monitor = require('./lib/monitor.js');
+	path = require('path'),
+	monitor = require('./lib/monitor.js');
 
 var CONFIG_FILE = './conf/monitor_conf.json';
 var TIME_CONV = 60*1000;
 
 var start = function() {
-	var config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'UTF-8'));
+	var config = JSON.parse(
+		fs.readFileSync(path.resolve(__dirname, CONFIG_FILE), 'UTF-8'));
 	var interval_time = config['meta']['interval_time'];
 		
 	setTimeout(function(){
