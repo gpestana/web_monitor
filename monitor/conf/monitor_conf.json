@@ -1,0 +1,21 @@
+{
+	"meta": {
+		"interval_time": 0.05
+	},
+
+	"rules": {
+		"http://www.google.com": {
+			"include": "search",
+			"exclude": "facebook"
+		},
+		"http://www.facebook.com": {
+			"include": "social network",
+			"exclude": "google"
+		},
+		"http://www.addasdsaadadadadasdas.com": {
+			"include": "social network",
+			"exclude": "google"
+		}
+	}
+
+}

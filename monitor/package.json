@@ -1,0 +1,14 @@
+{
+  "name": "monitor",
+  "version": "0.0.1",
+  "description": "service that monitors content and latency of websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gpestana",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
+}
