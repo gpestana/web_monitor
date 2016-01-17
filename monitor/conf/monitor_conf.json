@@ -9,12 +9,12 @@
 			"exclude": "facebook"
 		},
 		"http://www.facebook.com": {
-			"include": "social network",
+			"include": "facebook",
 			"exclude": "google"
 		},
-		"http://www.addasdsaadadadadasdas.com": {
-			"include": "social network",
-			"exclude": "google"
+		"http://www.thisewbpagaisunreacheable.com": {
+			"include": "not working",
+			"exclude": "do I exist?"
 		}
 	}
 

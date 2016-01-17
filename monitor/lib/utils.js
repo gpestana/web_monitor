@@ -2,7 +2,7 @@ var log = function(msg){
 	console.log(new Date+':   '+msg);
 }
 
-var isValidURL = function(url, obj) {
+var isValidObj = function(url, obj) {
 	return obj.hasOwnProperty(url);
 }
 
@@ -14,6 +14,12 @@ var sizeRules = function(obj) {
 	return size;
 }
 
+//TODO: make this verification more robust
+var isOnline = function(res) {
+	return res.statusCode == 200;
+}
+
 module.exports.log = log;
-module.exports.isValidURL = isValidURL;
+module.exports.isOnline = isOnline;
+module.exports.isValidObj = isValidObj;
 module.exports.sizeRules = sizeRules;
