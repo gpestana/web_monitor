@@ -1,7 +1,14 @@
 #!/bin/bash
 
-echo 'starting web monitor services'
+if [ $1 == "-s" ]
+then
+  echo 'starting web monitor services in silent mode. check the logs at ./web_monitor.log'
+  node monitor/index.js >>web_monitor.log 2>&1 &
+  node db_manager/index.js >>web_monitor.log 2>&1 &
+  node webserver/index.js >>web_monitor.log 2>&1 &
+else
+  node monitor/index.js &
+  node db_manager/index.js &
+  node webserver/index.js &
+fi
 
-node monitor/index.js &
-node db_manager/index.js &
-node webserver/index.js &
