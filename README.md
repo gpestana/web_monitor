@@ -5,7 +5,7 @@ You can access the dashboard of a dev deployment (inspection running each 10m) a
 
 ###Architecture & tech
 
-<add pictcure with architecure>
+![web monitor architecture](http://i.imgur.com/YaIDKlw.png)
 
 The web monitor tool is divided in 3 self contained services as the picture shows.
 
@@ -105,7 +105,9 @@ Personally and given the client requirements (not many clients, we probably don'
 
 In summary, this is the design I'd use for the web monitor service at scale:
 
-<insert image here>
+![web monitor architecture at scale](http://i.imgur.com/gs5UUcl.png)
+
+
 
 ####Security
 
