@@ -28,11 +28,11 @@ RabbitMQ was used to run the messaging layer. RabbitMQ implements the AMQP proto
 
 *Dependencies:* Node.JS [https://nodejs.org/en/download/](https://nodejs.org/en/download/), RabbitMQ [https://nodejs.org/en/download/](http://www.rabbitmq.com/download.html)
 
-1) `$ clone https://github.com/gpestana/web_monitor.git`
+1) `$ git clone https://github.com/gpestana/web_monitor.git`
 
 2) `$ cd web_monitor`
 
-3) `$ npm install monitor; npm install db_manager; npm webserver;`
+3) `$ cd monitor; npm install; cd ../db_manager; npm install; cd ../webserver; npm install webserver; cd ..`
 
 
 4) `$ ./start_services -s` (silent mode, the logs for each service will be stored in ./web_monitor.log)
