@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo 'starting web monitor services'
+
+node monitor/index.js &
+node db_manager/index.js &
+node webserver/index.js &

@@ -1,0 +1,17 @@
+{
+  "name": "webserver",
+  "version": "0.0.0",
+  "description": "webserver with static website that renders last log stored in db_manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node index.js"
+  },
+  "author": "gpestana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "request": "^2.67.0"
+  }
+}

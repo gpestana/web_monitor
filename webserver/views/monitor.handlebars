@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Web monitor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <div id="wrapper">
+ {{#if error}}
+    <h1>ERROR!</h1>
+  {{else}}
+
+    <h2>Web Monitor Dashboard</h2>
+    <br>
+          <h4 class="sub-header">log entry from {{timestamp}}</h4>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                    <th>#</th>
+                  <th>URL</th>
+                  <th>Latency</th>
+                  <th>Status</th>
+                  <th>Include</th>
+                  <th>Exclude</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each data}}
+                {{#if this.content_result}}
+                <tr>
+                  <td>{{@key}}</td>
+                  <td>{{this.url}}</td>
+                  <td>{{this.latency}} ms</td>
+                  <td>{{this.status}}</td>
+                  <td>{{this.content_result.include}}</td>
+                  <td>{{this.content_result.exclude}}</td>
+
+                </tr>
+                {{else}}
+                  <tr>
+                  <td>{{@key}}</td>
+                  <td>{{this.url}}</td>
+                  <td>{{this.latency}} ms</td>
+                  <td>{{this.status.code}}</td>
+                  <td>--</td>
+                  <td>--</td>
+
+                </tr>
+                {{/if}}
+                {{/each}}
+              </tbody>
+            </table>
+            </div>
+  {{/if}}
+
+
+<a HREF="javascript:history.go(0)">refresh</a>
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</html>

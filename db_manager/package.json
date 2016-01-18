@@ -1,0 +1,16 @@
+{
+  "name": "db_manager",
+  "version": "0.0.0",
+  "description": "service that implements db manager for web monitor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node index.js"
+  },
+  "author": "gpestana",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.4.0",
+    "express": "^4.13.3"
+  }
+}

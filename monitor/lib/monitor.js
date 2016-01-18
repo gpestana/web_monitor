@@ -46,7 +46,6 @@ var add_result = function(res) {
 	results.push(res);
 
 	if (results.length == nr_requests) {
-		//comm.send(JSON.stringify(results));
 		comm.send(JSON.stringify(results));
 
 		results = [];
