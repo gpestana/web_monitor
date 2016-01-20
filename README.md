@@ -124,3 +124,29 @@ Latency should be calculated as the time difference between when the HTTP reques
 
 
 Currently reading [Passively Measuring TCP Round-trip Times (A close look at RTT measurements with TCP) - https://queue.acm.org/detail.cfm?id=2539132](https://queue.acm.org/detail.cfm?id=2539132) More on this soon.
+
+___
+
+###Job scheduling
+####A better design proposal
+*edited on 20/01*
+
+After thinking futher on the possible drawbacks of the design for the web monitor at scale, I came up with a more simple and easy to scale solution for the job scheduling. The new design idea consists of decoupling the monitor service itself from the task of inspecting the website.
+
+
+![new proposal web monitor architecture](https://i.imgur.com/orwu7yP.png)
+
+
+The Dispatcher will maintains the configuration data regarding the websites to inspect, the inspection interval and all the essential configuration data. Regularly and based on the time interval in the configuration, the Dispatcher sends messages to a work queue with the essential data for each job. A job consists on inspecting one single website. These messages are queued and consumed by the workers in a fair way. A worker contains the logic to read the message coming from the Disptcher and inspect the website according to the message received. Once the taks is done, the worker publishes the resoults into another messaging queue that will be consumed by the DB Clusters that are subscribed to the particular website that the task was responsible for. Once a worker completes the tasks at hand and publishes the results, it will be assigned with other queued tasks, if they exists (this is implemented by the AMQP protocol implemented by RabbitMQ, for example).
+
+
+The main advantages of this approach when comparing with the initial proposal are:
+- *Configuration management*: With this approach, there is no need for a new service that manages the configuration of the web monitor services. This is better approach because the changes in the configuration do not depend on messages being passed to the web monitor services as in the former proposal.
+- *Sell contained worker and scalability*: If the number of websites to be consumed changes (many more or many less) it's easy to redimension the infrastructure by adding or removing workers. The workers are deployed separately and can be written in any language, as far as it respects the communication protocol.
+
+
+The initial design proposal had similar benefits of scalability, since it woul dbe possible to add or remove Monitor services at will. Though, it is more elegant and easy to mantain if the business logic is completely decoupled from the work scheduling. This was not happening in the first design since each Monitor service was responsible to mantain the configuration of the tasks to complete, trigger the inspection based on a configuration service mantained by the service and do the inspection itself. With the new approach, configuration and inspection triggering are completely decoupled from the inspection task itself, which makes the whole infrastructure more scalable and esay to maintain.
+
+
+
+
